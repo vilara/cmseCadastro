@@ -12,11 +12,25 @@ use Illuminate\Support\Facades\Route;
 | contains the "web" middleware group. Now create something great!
 |
 */
+Route::middleware(['auth'])->group(function () {
+Route::get('/', function () {return view('site.home');})->name('home');
 
-Route::get('/', function () {
-    return view('welcome');
+// Users Controller
+
+Route::resource('user', 'Model\UserController');
 });
+// Autenticação personalizada
 
-Auth::routes();
+Route::get('login','Autentica\AuthController@showLoginForm')->name('login');
+Route::post('login','Autentica\AuthController@login');
+Route::get('register','Autentica\AuthController@showRegistrationForm')->name('register');
+Route::post('register','Autentica\RegisterController@register');
+Route::post('logout','Autentica\AuthController@logout');
+Route::get('password/reset','Autentica\AuthController@showLinkRequestForm')->name('password.request');
+Route::post('password/email','Autentica\AuthController@sendResetLinkEmail')->name('password.email');
 
-Route::get('/home', 'HomeController@index')->name('home');
+//Route::get('registro', '');
+
+//Auth::routes();
+
+//Route::get('/home', 'HomeController@index')->name('home');
