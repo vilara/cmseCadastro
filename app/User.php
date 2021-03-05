@@ -10,10 +10,10 @@ use Webpatser\Uuid\Uuid;
 class User extends Authenticatable
 {
     use Notifiable;
-    
+
     protected $connection = 'mysql2';
 
-    
+
     /**
      *  Setup model event hooks
      */
@@ -43,7 +43,7 @@ class User extends Authenticatable
      * @var array
      */
     protected $fillable = [
-        'name', 'email', 'password', 'uuid'
+        'name', 'email', 'password', 'uuid', 'active'
     ];
 
     /**
