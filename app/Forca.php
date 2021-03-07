@@ -6,5 +6,7 @@ use Illuminate\Database\Eloquent\Model;
 
 class Forca extends Model
 {
-    //
+    protected $fillable = ['abrev','descr'];
+
+    public $timestamps = false;
 }

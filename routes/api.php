@@ -17,3 +17,11 @@ use Illuminate\Support\Facades\Route;
 Route::middleware('auth:api')->get('/user', function (Request $request) {
     return $request->user();
 });
+
+Route::middleware(['auth'])->group(function () {
+    // Users Controller
+    
+});
+Route::resource('user', 'Api\Model\UserController');
+Route::resource('section', 'Api\Model\SectionController');
+Route::resource('om', 'Api\Model\OmController');

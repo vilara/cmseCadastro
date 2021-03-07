@@ -18,6 +18,8 @@ Route::get('/', function () {return view('site.home');})->name('home');
 // Users Controller
 
 Route::resource('user', 'Model\UserController');
+Route::resource('section', 'Model\SectionController');
+Route::resource('om', 'Model\OmController');
 });
 // Autenticação personalizada
 

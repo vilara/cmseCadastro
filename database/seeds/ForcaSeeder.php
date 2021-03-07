@@ -2,6 +2,7 @@
 
 use Illuminate\Database\Seeder;
 use App\Forca;
+use Illuminate\Support\Facades\DB;
 
 class ForcaSeeder extends Seeder
 {
@@ -12,6 +13,11 @@ class ForcaSeeder extends Seeder
      */
     public function run()
     {
-        return null;
+
+        DB::table('forcas')->insert([
+            "abrev" => 'EB',
+            "nome" => 'Exército Brasileiro'
+        ]);
+       
     }
 }

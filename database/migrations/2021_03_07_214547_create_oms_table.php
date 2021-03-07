@@ -4,7 +4,7 @@ use Illuminate\Database\Migrations\Migration;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Support\Facades\Schema;
 
-class CreateForcasTable extends Migration
+class CreateOmsTable extends Migration
 {
     /**
      * Run the migrations.
@@ -13,10 +13,12 @@ class CreateForcasTable extends Migration
      */
     public function up()
     {
-        Schema::create('forcas', function (Blueprint $table) {
+        Schema::create('oms', function (Blueprint $table) {
             $table->id();
-            $table->string('abrev');
-            $table->string('nome');
+            $table->string('nomeOm');
+            $table->string('siglaOm');
+            $table->string('codom');
+            $table->string('codug');
         });
     }
 
@@ -27,6 +29,6 @@ class CreateForcasTable extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('forcas');
+        Schema::dropIfExists('oms');
     }
 }
