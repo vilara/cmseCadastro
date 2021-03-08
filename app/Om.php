@@ -6,6 +6,8 @@ use Illuminate\Database\Eloquent\Model;
 
 class Om extends Model
 {
+    protected $connection = 'mysql';
+
     protected $fillable = ['nomeOm','siglaOm','codom','codug'];
 
     public $timestamps = false;
@@ -14,4 +16,10 @@ class Om extends Model
     {
         return $this->belongsToMany('App\Section');
     }
+
+    public function details(){
+        return $this->hasOne('App\Detail', 'detail_id');
+    }
+
+
 }

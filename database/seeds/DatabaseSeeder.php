@@ -1,6 +1,6 @@
 <?php
 
-use App\Section;
+use App\Cargo;
 use Illuminate\Database\Seeder;
 
 class DatabaseSeeder extends Seeder
@@ -16,7 +16,12 @@ class DatabaseSeeder extends Seeder
             UserSeeder::class,
             ForcaSeeder::class,
             OmSeeder::class,
-            SectionSeeder::class
+            SectionSeeder::class,
+            PostoGradSeeder::class,
+            MilitarSeeder::class,
+            CivilSeeder::class,
+            CargoSeeder::class,
+            DetailSeeder::class
         ]);
     }
 }

@@ -24,6 +24,7 @@ class UserSeeder extends Seeder
         User::create([
             'name' => 'Marcelo Martins Vilara',
             'email' => 'marcelovilara@gmail.com',
+            'cpf' => '11921793821',
             'password' => Hash::make(12345678)
         ]);
     }

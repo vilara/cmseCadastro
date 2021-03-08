@@ -43,7 +43,7 @@ class User extends Authenticatable
      * @var array
      */
     protected $fillable = [
-        'name', 'email', 'password', 'uuid', 'active'
+        'name', 'email', 'password', 'uuid', 'active', 'cpf'
     ];
 
     /**
@@ -63,4 +63,26 @@ class User extends Authenticatable
     protected $casts = [
         'email_verified_at' => 'datetime',
     ];
+
+    public function detail(){
+        return $this->hasOne('App\Detail')->with('detailable');
+    }
+
+    public function oms(){
+        return $this->hasManyThrough(
+            'App\Om',
+            'App\Detail',
+            'om_id',
+            'id',
+        );
+    }
+
+    public function sections(){
+        return $this->hasManyThrough(
+            'App\Section',
+            'App\Detail',
+            'section_id',
+            'id',
+        );
+    }
 }

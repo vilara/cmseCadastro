@@ -1,7 +1,8 @@
 <?php
 
-use App\Om;
 use Illuminate\Database\Seeder;
+use App\Om;
+use Illuminate\Support\Facades\DB;
 
 class OmSeeder extends Seeder
 {
@@ -12,7 +13,7 @@ class OmSeeder extends Seeder
      */
     public function run()
     {
-        Om::create([
+        DB::table('oms')->insert([
             'nomeOm' => '2º Batalhão de Polícia do Exército',
             'siglaOm' => '2º BPE',
             'codom' => '012716',
