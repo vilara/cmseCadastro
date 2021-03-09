@@ -26,8 +26,6 @@ class CreateRolersTable extends Migration
             $table->foreign('user_id')->references('id')->on(env('DB_DATABASE2').'.users');
             $table->unsignedBigInteger('roler_id');
             $table->foreign('roler_id')->references('id')->on('rolers')->onDelete('cascade');
-            $table->string('name');
-            $table->string('label');
             $table->timestamps();
         });
     }
@@ -40,5 +38,6 @@ class CreateRolersTable extends Migration
     public function down()
     {
         Schema::dropIfExists('rolers');
+        Schema::dropIfExists('roler_user');
     }
 }

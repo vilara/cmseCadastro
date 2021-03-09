@@ -21,7 +21,9 @@ class DatabaseSeeder extends Seeder
             MilitarSeeder::class,
             CivilSeeder::class,
             CargoSeeder::class,
-            DetailSeeder::class
+            DetailSeeder::class,
+            RolerSeeder::class,
+            PermissionSeeder::class
         ]);
     }
 }

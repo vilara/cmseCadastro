@@ -85,4 +85,15 @@ class User extends Authenticatable
             'id',
         );
     }
+
+    public function permissions(){
+        return $this->hasManyThrough(
+            'App\Permission',
+            'App\Roler'
+        );
+    }
+
+    public function rolers(){
+        return $this->BelongsToMany('App\Roler', 'roler_user', 'user_id', 'roler_id')->withPivot('user_id','roler_id');
+    }
 }
