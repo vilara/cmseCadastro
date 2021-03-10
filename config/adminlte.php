@@ -29,9 +29,9 @@ return [
     | https://github.com/jeroennoten/Laravel-AdminLTE/wiki/6.-Basic-Configuration
     |
     */
-
-    'use_ico_only' => false,
-    'use_full_favicon' => true,
+    
+    'use_ico_only' => true,
+    'use_full_favicon' => false,
 
     /*
     |--------------------------------------------------------------------------
