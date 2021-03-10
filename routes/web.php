@@ -32,7 +32,7 @@ Route::resource('om', 'Model\OmController');
 
 // Route::get('login','Autentica\AuthController@showLoginForm')->name('login');
 // Route::post('login','Autentica\AuthController@login');
-// Route::get('register','Autentica\AuthController@showRegistrationForm')->name('register');
+Route::post('registrar','Autentica\AuthController@register')->name('registrar');
 // Route::post('register','Autentica\RegisterController@register');
 // Route::post('logout','Autentica\AuthController@logout');
 // Route::get('password/reset','Autentica\AuthController@showLinkRequestForm')->name('password.request');

@@ -17,8 +17,7 @@ class CreateUsersTable extends Migration
     {
         Schema::connection('mysql2')->dropIfExists('users');
         Schema::connection('mysql2')->create('users', function (Blueprint $table) {
-            $table->id();
-            $table->uuid('uuid');
+            $table->uuid('id')->primary();
             $table->string('name');
             $table->string('email')->unique();
             $table->string('cpf')->unique();

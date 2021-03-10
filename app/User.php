@@ -13,6 +13,8 @@ class User extends Authenticatable
 
     protected $connection = 'mysql2';
 
+    protected $keyType = 'string';
+
 
     /**
      *  Setup model event hooks
@@ -21,7 +23,7 @@ class User extends Authenticatable
     {
         parent::boot();
         self::creating(function ($model) {
-            $model->uuid = (string) Uuid::generate(4);
+            $model->id = (string) Uuid::generate(4);
         });
     }
 
@@ -33,7 +35,7 @@ class User extends Authenticatable
      */
     public function getRouteKeyName()
     {
-        return 'uuid';
+        return 'id';
     }
 
 
@@ -43,7 +45,7 @@ class User extends Authenticatable
      * @var array
      */
     protected $fillable = [
-        'name', 'email', 'password', 'uuid', 'active', 'cpf'
+        'name', 'email', 'password', 'active', 'cpf'
     ];
 
     /**
@@ -65,7 +67,7 @@ class User extends Authenticatable
     ];
 
     public function detail(){
-        return $this->hasOne('App\Detail')->with('detailable');
+        return $this->hasOne('App\Detail', 'id')->with('detailable');
     }
 
     public function oms(){
@@ -89,7 +91,10 @@ class User extends Authenticatable
     public function permissions(){
         return $this->hasManyThrough(
             'App\Permission',
-            'App\Roler'
+            'App\Roler',
+            'user_id',
+            'roler_id'
+
         );
     }
 

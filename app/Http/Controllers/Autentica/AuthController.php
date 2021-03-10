@@ -16,6 +16,11 @@ class AuthController extends Controller
         return view('site.auth.register');
     }
 
+    public function register(Request $request){
+        dd($request->all());
+        return redirect()->intended('/home');
+    }
+
     public function showLinkRequestForm(){
         return view('site.auth.passwords.email');
     }

@@ -1,5 +1,6 @@
 <?php
 
+use App\User;
 use Illuminate\Database\Seeder;
 use Illuminate\Support\Facades\DB;
 
@@ -18,7 +19,7 @@ class RolerSeeder extends Seeder
         ]);
 
         DB::table('roler_user')->insert([
-            'user_id' => 1,
+            'user_id' => User::all()->last()->id,
             'roler_id' => 1
         ]);
     }

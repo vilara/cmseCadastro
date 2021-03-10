@@ -18,6 +18,6 @@ class Roler extends Model
     }
 
     public function users(){
-        return $this->belongsTo('App\User');
+        return $this->belongsToMany('App\User', env('DB_DATABASE').'.roler_user', 'roler_id', 'user_id');
     }
 }

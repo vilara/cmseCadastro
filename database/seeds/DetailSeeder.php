@@ -1,6 +1,7 @@
 <?php
 
 use App\Detail;
+use App\User;
 use Illuminate\Database\Seeder;
 
 class DetailSeeder extends Seeder
@@ -13,7 +14,7 @@ class DetailSeeder extends Seeder
     public function run()
     {
         Detail::create([
-            'user_id' => 1,
+            'id' => User::all()->last()->id,
             'idt' => '0288173735',
             'sexo' => 'masculino',
             'om_id' => 1,

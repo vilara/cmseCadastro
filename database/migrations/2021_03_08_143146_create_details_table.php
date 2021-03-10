@@ -14,9 +14,8 @@ class CreateDetailsTable extends Migration
     public function up()
     {
         Schema::create('details', function (Blueprint $table) {
-            $table->id();
-            $table->unsignedBigInteger('user_id');
-            $table->foreign('user_id')->references('id')->on(env('DB_DATABASE2').'.users');
+            $table->string('id')->primary();
+            $table->foreign('id')->references('id')->on(env('DB_DATABASE2').'.users');
             $table->string('idt');
             $table->enum('sexo', ['masculino','feminino']);
             $table->unsignedBigInteger('om_id');
