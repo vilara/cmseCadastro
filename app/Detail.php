@@ -17,7 +17,7 @@ class Detail extends Model
 
     protected $connection = 'mysql';
 
-    protected $fillable = ['user_id', 'idt', 'sexo', 'om_id', 'cargo_id', 'dtNasc', 'detailable_id', 'detailable_type'];
+    protected $fillable = ['id', 'idt', 'sexo', 'om_id', 'cargo_id', 'dtNasc', 'nome_completo', 'detailable_id', 'detailable_type'];
 
     public function getRouteKeyName()
     {

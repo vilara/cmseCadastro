@@ -1,4 +1,11 @@
 <div class="col-md-6 offset-md-3 mt-5">
+    <div class="col-md-12 mt-5">
+        @if (session()->has('message'))
+            <div class="alert alert-dafault-success">
+                {{ session('message') }}
+            </div>
+        @endif
+    </div>
     <!-- Application buttons -->
     <div class="card text-center">
         <div class="card-header">

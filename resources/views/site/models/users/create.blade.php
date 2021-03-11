@@ -31,6 +31,9 @@
 @section('js')
     <script>
         console.log('Oi!');
+       
+          
+        $("#cpf").mask('99999999999');
 
     </script>
 @stop
