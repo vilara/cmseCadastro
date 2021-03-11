@@ -9,22 +9,23 @@
                 <div class="col md 4">
                     <div class="form-group">
                         <label>Login</label>
-                        <input type="text" name="name" wire:model="name" class="form-control" placeholder="">
-                        @error('name') <span class="error text-red text-sm">{{ $message }}</span> @enderror
+                        <input type="text" wire:model="user.name" class="form-control form-control-sm" placeholder="">
+                        @error('user.name') <span class="error text-red text-sm">{{ $message }}</span> @enderror
                     </div>
                 </div>
                 <div class="col md 4">
                     <div class="form-group">
                         <label>E-mail</label>
-                        <input type="text" name="email" wire:model="email" class="form-control" placeholder="">
-                        @error('email') <span class="error text-red text-sm">{{ $message }}</span> @enderror
+                        <input type="text" wire:model="user.email" class="form-control form-control-sm" placeholder="">
+                        @error('user.email') <span class="error text-red text-sm">{{ $message }}</span> @enderror
                     </div>
                 </div>
                 <div class="col md 4">
                     <div class="form-group">
                         <label>CPF</label>
-                        <input type="text" id="cpf" name="cpf" wire:model="cpf" class="form-control" placeholder="">
-                        @error('cpf') <span class="error text-red text-sm">{{ $message }}</span> @enderror
+                        <input type="text" id="cpf" wire:model="user.cpf" class="form-control form-control-sm"
+                            placeholder="">
+                        @error('user.cpf') <span class="error text-red text-sm">{{ $message }}</span> @enderror
                     </div>
                 </div>
             </div>
@@ -42,17 +43,18 @@
                 <div class="col md 4">
                     <div class="form-group">
                         <label>Nome completo</label>
-                        <input type="text" wire:model="nome_completo" class="form-control"
+                        <input type="text" wire:model="detail.nome_completo" class="form-control form-control-sm"
                             placeholder="Sem abreviaturas">
-                        @error('nome_completo') <span class="error text-red text-sm">{{ $message }}</span>
+                        @error('detail.nome_completo') <span class="error text-red text-sm">{{ $message }}</span>
                         @enderror
                     </div>
                 </div>
                 <div class="col md 4">
                     <div class="form-group">
                         <label>Identidade</label>
-                        <input type="text" wire:model="idt" class="form-control" placeholder="somente números">
-                        @error('idt') <span class="error text-red text-sm">{{ $message }}</span> @enderror
+                        <input type="text" wire:model="detail.idt" class="form-control form-control-sm"
+                            placeholder="somente números">
+                        @error('detail.idt') <span class="error text-red text-sm">{{ $message }}</span> @enderror
                     </div>
                 </div>
                 <div class="col-md-3">
@@ -60,12 +62,12 @@
                     <div class="form-group">
                         <label for="sexo">Sexo</label>
                         <div class="border pt-1 pl-3 mb-0">
-                            <label class="radio-inline mr-3"><input wire:model="sexo" type="radio"
-                                    class="form-radio-input" name="sexo" id="sexo1" value="masculino"> Masculino</label>
-                            <label class="radio-inline"><input wire:model="sexo" type="radio" class="form-radio-input"
-                                    name="sexo" id="sexo2" value="feminino"> Feminino</label>
+                            <label class="radio-inline mr-3"><input wire:model="detail.sexo" type="radio"
+                                    class="form-radio-input" id="sexo1" value="masculino"> Masculino</label>
+                            <label class="radio-inline"><input wire:model="detail.sexo" type="radio"
+                                    class="form-radio-input" id="sexo2" value="feminino"> Feminino</label>
                         </div>
-                        @error('sexo') <span class="error text-red text-sm">{{ $message }}</span> @enderror
+                        @error('detail.sexo') <span class="error text-red text-sm">{{ $message }}</span> @enderror
                     </div>
                 </div>
             </div>
@@ -74,15 +76,62 @@
                     <!-- select om -->
                     <div class="form-group">
                         <label>OM</label>
-                        <select class="form-control form-control-sm" name="om_id" id="om_id">
-                            <option></option>
+                        <select class="form-control form-control-sm" wire:model='detail.om_id'>
+                            <option>Selecione...</option>
+                            @foreach ($oms as $index => $om)
+                                <option value="{{ $om->id }}">{{ $om->siglaOm }}</option>
+
+                            @endforeach
                         </select>
+                        @error('detail.om_id') <span class="error text-red text-sm">{{ $message }}</span> @enderror
                     </div>
+                </div>
+                <div class="col-md-2">
+                    <!-- select cargo -->
+                    <div class="form-group">
+                        <label>Seção</label>
+                        <select class="form-control form-control-sm" wire:model='detail.section_id'>
+                            <option>Selecione...</option>
+                            @foreach ($sections as $index => $section)
+                                <option value="{{ $section->id }}">{{ $section->siglaSecao }}</option>
+
+                            @endforeach
+                        </select>
+                        @error('detail.section_id') <span class="error text-red text-sm">{{ $message }}</span>
+                        @enderror
+                    </div>
+                </div>
+                <div class="col-md-2">
+                    <!-- select cargo -->
+                    <div class="form-group">
+                        <label>Função</label>
+                        <select class="form-control form-control-sm" wire:model='detail.cargo_id'>
+                            <option>Selecione...</option>
+                            @foreach ($cargos as $index => $cargo)
+                                <option value="{{ $cargo->id }}">{{ $cargo->siglaCg }}</option>
+
+                            @endforeach
+                        </select>
+                        @error('detail.cargo_id') <span class="error text-red text-sm">{{ $message }}</span>
+                        @enderror
+                    </div>
+                </div>
+                <div class="form-group">
+                    <div class="col md 3">
+                        <label>Data de nascimento</label>
+                        <input type="date" wire:model="detail.dtNasc" class="form-control  form-control-sm">
+                    </div>
+                    @error('detail.dtNasc') <span class="error text-red text-sm">{{ $message }}</span> @enderror
                 </div>
             </div>
 
-            <div class="card-footer">
-                <button type="submit" class="btn btn-info">Cadastrar</button>
-                {{-- <button type="submit" class="btn btn-default float-right">Cancelar</button> --}}
-            </div>
+        </div>
+    </div>
+    <button wire:click.prevent="$set('show', true)">Mostrar</button>
+    <button wire:click.prevent="$set('show', false)">Esconder</button>
+    @if ($show)
+    @livewire('model.militar.create')
+    @endif
+
+
 </form>

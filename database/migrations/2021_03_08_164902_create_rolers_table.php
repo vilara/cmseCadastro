@@ -23,7 +23,7 @@ class CreateRolersTable extends Migration
         Schema::create('roler_user', function (Blueprint $table) {
             $table->id();
             $table->string('user_id');
-            $table->foreign('user_id')->references('id')->on(env('DB_DATABASE2').'.users');
+            $table->foreign('user_id')->references('id')->on('arranchacmse.users');
             $table->unsignedBigInteger('roler_id');
             $table->foreign('roler_id')->references('id')->on('rolers')->onDelete('cascade');
             $table->timestamps();

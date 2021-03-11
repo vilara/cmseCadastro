@@ -2,62 +2,81 @@
 
 namespace App\Http\Livewire\Model\User;
 
+use App\Cargo;
 use App\Detail;
+use App\Om;
+use App\Section;
 use App\User;
 use Livewire\Component;
 
 class Create extends Component
 {
+    public $user;
+    public $detail;
+    public $oms;
+    public $cargos;
+    public $sections;
+    public $show = false;
 
-    public $name;
-    public $cpf;
-    public $email;
-    public $idt;
-    public $nome_completo;
-    public $sexo;
-    
+    public function mount(User $user, Detail $detail)
+    {
+        $this->user = $user;
+        $this->detail = $detail;
+        $this->oms = Om::all();
+        $this->cargos = Cargo::all();
+        $this->sections = Section::all();
+    }
+
     protected $rules = [
-        'name' => 'required|string|unique:App\User,name',
-        'cpf' => 'required|string|size:11|unique:App\User,cpf',
-        'email' => 'required|email|unique:App\User,email',
-        'idt' => 'required|digits:value',
-        'nome_completo' => 'required|string|min:6',
-        'sexo' => 'required',
+        'user.name' => 'required|string|unique:App\User,name',
+        'user.cpf' => 'required|string|size:11|unique:App\User,cpf',
+        'user.email' => 'required|email|unique:App\User,email',
+        'detail.idt' => 'required',
+        'detail.nome_completo' => 'required|string|min:6',
+        'detail.sexo' => 'required',
+        'detail.dtNasc' => 'required',
+        'detail.om_id' => 'required',
+        'detail.cargo_id' => 'required',
+        'detail.section_id' => 'required',
     ];
 
     protected $messages = [
-        'name.required' => 'Esse campo é obrigatório',
-        'name.min' => 'Mínimo de 6 caracteres',
-        'name.unique' => 'Este nome já está cadastrado no sistema',
-        'cpf.required' => 'Esse campo é obrigatório',
-        'cpf.size' => 'Esse campo deve conter 11 dígitos',
-        'cpf.unique' => 'Este cpf já está cadastrado no sistema',
-        'email.required' => 'Esse campo é obrigatório',
-        'email.email' => 'E-mail inválido',
-        'email.unique' => 'Este email já está cadastrado no sistema',
-        'idt.required' => 'Esse campo é obrigatório',
-        'sexo.required' => 'Esse campo é obrigatório',
-        'nome_completo.required' => 'Esse campo é obrigatório',
+        'user.name.required' => 'Esse campo é obrigatório',
+        'user.name.min' => 'Mínimo de 6 caracteres',
+        'user.name.unique' => 'Este nome já está cadastrado no sistema',
+        'user.cpf.required' => 'Esse campo é obrigatório',
+        'user.cpf.size' => 'Esse campo deve conter 11 dígitos',
+        'user.cpf.unique' => 'Este cpf já está cadastrado no sistema',
+        'user.email.required' => 'Esse campo é obrigatório',
+        'user.email.email' => 'E-mail inválido',
+        'user.email.unique' => 'Este email já está cadastrado no sistema',
+        'detail.idt.required' => 'Esse campo é obrigatório',
+        'detail.sexo.required' => 'Esse campo é obrigatório',
+        'detail.nome_completo.required' => 'Esse campo é obrigatório',
+        'detail.dtNasc.required' => 'Esse campo é obrigatório',
+        'detail.om_id.required' => 'Esse campo é obrigatório',
+        'detail.cargo_id.required' => 'Esse campo é obrigatório',
+        'detail.section_id.required' => 'Esse campo é obrigatório',
     ];
 
 
-    
+
 
     public function cadastrar(){
-
         $this->validate();
+        $this->user->save();
+        // dd($this->user);
 
-       User::create([
-            'name' => $this->name,
-            'email' => $this->email,
-            'cpf' => $this->cpf
-        ]);
+
+        $this->detail->id = User::where('cpf', $this->user->cpf)->get()->first()->id;
+        $this->detail->save();
+        dd($this->detail);
 
         //dd(User::where('cpf', $this->cpf)->get()->first()->id);
 
-        Detail::create([
-            'id' => User::where('cpf', $this->cpf)->get()->first()->id
-        ]);
+      /*   Detail::create([
+            'id' => User::where('cpf', $this->user->cpf)->get()->first()->id
+        ]); */
 
 
 
@@ -66,7 +85,11 @@ class Create extends Component
 
     }
 
-   
+    public function mostrar(){
+
+    }
+
+
     public function render()
     {
         return view('livewire.model.user.create');
